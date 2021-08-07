@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 // Interceptors
 import { AddTokenInterceptor } from '../app/helpers/add-token.interceptor';
@@ -26,6 +27,11 @@ import { NuevoCuestionarioComponent } from './components/dashboard/cuestionarios
 import { PasoUnoComponent } from './components/dashboard/cuestionarios/nuevo-cuestionario/paso-uno/paso-uno.component';
 import { PasoDosComponent } from './components/dashboard/cuestionarios/nuevo-cuestionario/paso-dos/paso-dos.component';
 import { NuevaPreguntaComponent } from './components/dashboard/cuestionarios/nuevo-cuestionario/paso-dos/nueva-pregunta/nueva-pregunta.component';
+import { CuestionarioComponent } from './components/dashboard/cuestionarios/cuestionario/cuestionario.component';
+import { ListCuestionariosComponent } from './components/inicio/list-cuestionarios/list-cuestionarios.component';
+import { IngresarNombreComponent } from './components/inicio/list-cuestionarios/ingresar-nombre/ingresar-nombre.component';
+import { PreguntaComponent } from './components/inicio/list-cuestionarios/pregunta/pregunta.component';
+import { RespuestaCuestionarioComponent } from './components/inicio/list-cuestionarios/respuesta-cuestionario/respuesta-cuestionario.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,11 @@ import { NuevaPreguntaComponent } from './components/dashboard/cuestionarios/nue
     PasoUnoComponent,
     PasoDosComponent,
     NuevaPreguntaComponent,
+    CuestionarioComponent,
+    ListCuestionariosComponent,
+    IngresarNombreComponent,
+    PreguntaComponent,
+    RespuestaCuestionarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +61,8 @@ import { NuevaPreguntaComponent } from './components/dashboard/cuestionarios/nue
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
