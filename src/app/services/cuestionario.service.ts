@@ -16,7 +16,7 @@ export class CuestionarioService {
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = '/api/Cuestionario';
+    this.myApiUrl = '/api/Cuestionario/';
   }
 
   guardarCuestionario(cuestionario: Cuestionario): Observable<any> {
