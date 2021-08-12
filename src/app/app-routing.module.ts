@@ -18,28 +18,22 @@ import { RespuestaCuestionarioComponent } from './components/inicio/list-cuestio
 import { EstadisticasComponent } from './components/dashboard/cuestionarios/estadisticas/estadisticas.component';
 import { DetalleRespuestaComponent } from './components/dashboard/cuestionarios/estadisticas/detalle-respuesta/detalle-respuesta.component';
 
+// Guards
+import { AuthGuard } from './helpers/auth.guard';
+
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent, children: [
       { path: '', component: BienvenidaComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'listCuestionarios', component: ListCuestionariosComponent },
-      { path: 'ingresarNombre', component: IngresarNombreComponent },
-      { path: 'pregunta', component: PreguntaComponent },
-      { path: 'respuestaCuestionario', component: RespuestaCuestionarioComponent }
+      { path: 'listCuestionarios', loadChildren: () => import('./components/inicio/list-cuestionarios/list-cuestionarios.module')
+                                                  .then(x => x.ListCuestionariosModule) },
+
     ]},
-    { path: 'dashboard', component: DashboardComponent, children: [
-      { path: '', component: CuestionariosComponent },
-      { path: 'cambiarPassword', component: CambiarPasswordComponent },
-      { path: 'verCuestionario/:id', component: CuestionarioComponent },
-      { path: 'estadisticas/:id', component: EstadisticasComponent },
-      { path: 'detalleRespuesta/:id', component: DetalleRespuestaComponent },
-      { path: 'nuevoCuestionario', component: NuevoCuestionarioComponent, children: [
-        { path: 'pasoUno', component: PasoUnoComponent },
-        { path: 'pasoDos', component: PasoDosComponent }
-      ]}
-    ]},
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
+                                  loadChildren: () => import('./components/dashboard/dashboard.module')
+                                                  .then(x => x.DashboardModule)},
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' }
 ];
 
